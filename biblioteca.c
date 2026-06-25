@@ -1,42 +1,105 @@
 #include "biblioteca.h"
 
 int ordenaLivro(livro *a, livro *b){
-     char tA[200];
-     char tB[200];
-     strcpy(tA,a->titulo);
-     strcpy(tB,b->titulo);
-     char aA[200];
-     char aB[200];
-     strcpy(aA,a->autor);
-     strcpy(aB,b->autor);
      int i;
      int resultado;
-     for(i=0; tA[i] != '\0'; i++){
-          if(tA[i] >= 97 && tA[i] <= 122)
-               tA[i] -= 32;
+     char tituloA[200];
+     char tituloB[200];
+     strcpy(tituloA,a->titulo);
+     strcpy(tituloB,b->titulo);
+     
+     for(i=0; tituloA[i] != '\0'; i++){
+          if(tituloA[i] >= 'a' && tituloA[i] <= 'z')
+               tituloA[i] -= 'a' - 'A';
      }
-     for(i=0; tB[i] != '\0'; i++){
-          if(tB[i] >= 97 && tB[i] <= 122)
-               tB[i] -= 32;
+     for(i=0; tituloB[i] != '\0'; i++){
+          if(tituloB[i] >= 'a' && tituloB[i] <= 'z')
+               tituloB[i] -= 'a' - 'A';
      }
-     resultado = strcmp(tA,tB);
+     resultado = strcmp(tituloA,tituloB);
      if(resultado != 0)
           return resultado;
 
-     for(i=0; aA[i] != '\0'; i++){
-          if(aA[i] >= 97 && aA[i] <= 122)
-               aA[i] -= 32;
+     char autorA[200];
+     char autorB[200];
+     strcpy(autorA,a->autor);
+     strcpy(autorB,b->autor);
+
+     for(i=0; autorA[i] != '\0'; i++){
+          if(autorA[i] >= 'a' && autorA[i] <= 'z')
+               autorA[i] -= 'a' - 'A';
      }
-     for(i=0; aB[i] != '\0'; i++){
-          if(aB[i] >= 97 && aB[i] <= 122)
-               aB[i] -= 32;
+     for(i=0; autorB[i] != '\0'; i++){
+          if(autorB[i] >= 'a' && autorB[i] <= 'z')
+               autorB[i] -= 'a' - 'A';
      }
-     resultado = strcmp(aA,aB);
+     resultado = strcmp(autorA,autorB);
      if(resultado != 0)
           return resultado;
 
      resultado = a -> ed - b -> ed;
      return resultado;
+}
+
+livro *criaLivro(char titulo[], char autor[], char editora[], int ed, int lancamento){
+
+    livro *novoLivro = (livro*) malloc(sizeof(livro));
+    strcpy(novoLivro -> titulo , titulo );
+    strcpy(novoLivro -> autor  , autor  ); 
+    strcpy(novoLivro -> editora, editora);
+    novoLivro -> ed = ed;
+    novoLivro -> lancamento = lancamento;
+    novoLivro -> status = 1;
+    novoLivro -> historico = NULL;
+
+    return novoLivro;
+
+}
 
 
+
+int main(){
+    int opcao;
+
+    do{
+        printf("\n----- MENU BIBLIOTECA -----\n");
+        printf("1 - Cadastrar livro\n");
+        printf("2 - Consultar livro\n");
+        printf("3 - Remover livro\n");
+        printf("4 - realizar emprestimo\n");
+        printf("5 - Encerrar Sistema\n");
+        printf("Escolha uma opcao: ");
+        scanf("%d",&opcao);
+    
+        switch(opcao){
+            case 1:
+             
+                break;
+        
+
+            case 2:
+
+                break;
+            
+
+            case 3:
+
+                break;
+            
+
+            case 4:
+
+                break;
+
+            case 5:
+
+                break;
+
+            default:
+                printf("opcao invalida!\n");
+        }
+
+    }while(opcao!=5);
+
+    return 0;
 }
