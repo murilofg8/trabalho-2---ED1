@@ -1,5 +1,45 @@
 #include "biblioteca.h"
 
+historico *criaNo(char locatario[], data emprestimo, data devolucao){
+    historico *novoNo = (historico*)malloc(sizeof(historico));
+    if(novoNo == NULL){
+        printf("Falha de alocacao!\n");
+        exit(1);
+    }
+    strcpy(novoNo->locatario, locatario);
+    novoNo->emprestimo->dia = emprestimo->dia;
+    novoNo->emprestimo->mes = emprestimo->mes;
+    novoNo->emprestimo->ano = emprestimo->ano;
+    novoNo->devolucao ->dia = devolucao ->dia;
+    novoNo->devolucao ->mes = devolucao ->mes;
+    novoNo->devolucao ->ano = devolucao ->ano;
+    novoNo->prox = NULL;
+    return novoNo;
+}
+
+historico *addHistorico(historico *emprestimos, char locatario[], data emprestimo, data devolucao){
+    historico *novoNo = criaNo(locatario, emprestimo, devolucao);
+    if(emprestimos == NULL){
+        return novoNo;
+    }
+    historico *aux = emprestimos->prox;
+    emprestimos->prox = novoNo;
+    novoNo->prox = aux;
+   
+    return emprestimos;
+}
+
+void destroiHistorico(historico *emprestimos){
+    historico *aux;
+    while(emprestimos != NULL){
+        aux = emprestimos;
+        emprestimos = emprestimos->prox;
+        free(aux);
+    }
+}
+
+
+
 int ordenaLivro(livro *a, livro *b){
      int i;
      int resultado;
