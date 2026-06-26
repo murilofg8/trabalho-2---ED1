@@ -8,6 +8,13 @@ typedef struct data{
      int dia, mes, ano;
 }data;
 
+typedef struct historico{
+     char locatario[200];
+     data emprestimo;
+     data devolucao;
+     struct historico *prox;
+}historico;
+
 typedef struct livro{
      char titulo[200];
      char autor [200];
@@ -15,9 +22,29 @@ typedef struct livro{
      int  lancamento;
      int  ed;
      int status;
-     //historico de emprestivo: usar lista ou arvore;
+     historico *emprestimos;
 }livro;
 
+/*
+Função criaNo: rebebe os dados do emprestimo e retorna um ponteiro para no alocado dinamicamente.
+Entrada: locatario, data de emprestimo e data de devolução. 
+Saída: ponteiro para o nó alocado.
+*/
+historico *criaNo(char locatario[], data emprestimo, data devolucao);
+
+/*
+Função addHistorico: rebebe um ponteiro para o histórico de emprestimos, os dados do emprestimo e retorna um ponteiro para o histórico atualizado.
+Entrada: ponteiro para o histórico de emprestimos, locatario, data de emprestimo e data de devolução.
+Saída: ponteiro para o histórico atualizado.
+*/
+historico *addHistorico(historico *emprestimos, char locatario[], data emprestimo, data devolucao);
+
+/*
+Função destroiHistorico: recebe um ponteiro para o histórico de emprestimos e libera a memória alocada.
+Entrada: ponteiro para o histórico de emprestimos.
+Saída: void.
+*/
+void destroiHistorico(historico *emprestimos);
 
 /*
 Funçao ordenaLivro: rebebe dois nós AVL e retorna um número inteiro indicando a ordem afabetica.
