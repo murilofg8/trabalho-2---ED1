@@ -96,6 +96,29 @@ livro *criaLivro(char titulo[], char autor[], char editora[], int ed, int lancam
 
 }
 
+livro *consultaLivro(char titulo[], char autor[], int ed, livro *no){
+
+    if(no == NULL)
+        return NULL;
+    if(strcmp(no->titulo, titulo) == 0 && strcmp(no->autor, autor) == 0 && ed == 0)
+        return no;
+
+    if(strcmp(no->titulo, titulo) == 0 && strcmp(no->autor, autor) == 0 && ed == no->ed)
+        return no;
+
+    return NULL;
+
+}
+
+void removeLivro( livro *no){
+
+    if(no == NULL)
+        return;
+    destroiHistorico(no->emprestimos);
+    free(no);
+
+}
+
 
 
 int main(){
