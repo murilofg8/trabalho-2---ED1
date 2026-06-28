@@ -65,12 +65,19 @@ Saìda: ponteiro para o nó alocado.
 livro *criaLivro(char titulo[], char autor[], char editora[], int ed, int lancamento);
 
 /*
-Função consultaLivro: rebebe o titulo e autor do livro e retorna um ponteiro para o nó do livro caso ele exista.
+Função consultaLivro: rebebe o titulo e autor do livro e retorna um ponteiro para o nó do livro caso ele exista. caso a edição nao seja relevante para a consulta, o usuário deve passar 0 como parâmetro.
 Entrada: titulo e autor do livro.
 Saída: ponteiro para o nó do livro caso ele exista, ou NULL caso contrário.
 */
-livro *consultaLivro(char titulo[], char autor[]);
+livro *consultaLivro(char titulo[], char autor[], int ed, livro *no);
 
+
+/*
+Função removeLivro: rebebe um ponteiro para o nó do livro e libera a memória alocada. fução callback para a função de remoção da árvore AVL.
+Entrada: ponteiro para o nó do livro.
+saída: void.
+*/
+void removeLivro( livro *no);
 
 
 #endif
