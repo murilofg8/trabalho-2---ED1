@@ -26,14 +26,14 @@ typedef struct livro{
 }livro;
 
 /*
-Função criaNo: rebebe os dados do emprestimo e retorna um ponteiro para no alocado dinamicamente.
+Função criaNo: recebe os dados do emprestimo e retorna um ponteiro para no alocado dinamicamente.
 Entrada: locatario, data de emprestimo e data de devolução. 
 Saída: ponteiro para o nó alocado.
 */
 historico *criaNo(char locatario[], data emprestimo, data devolucao);
 
 /*
-Função addHistorico: rebebe um ponteiro para o histórico de emprestimos, os dados do emprestimo e retorna um ponteiro para o histórico atualizado.
+Função addHistorico: recebe um ponteiro para o histórico de emprestimos, os dados do emprestimo e retorna um ponteiro para o histórico atualizado.
 Entrada: ponteiro para o histórico de emprestimos, locatario, data de emprestimo e data de devolução.
 Saída: ponteiro para o histórico atualizado.
 */
@@ -47,37 +47,37 @@ Saída: void.
 void destroiHistorico(historico *emprestimos);
 
 /*
-Funçao ordenaLivro: rebebe dois nós AVL e retorna um número inteiro indicando a ordem afabetica.
+Funçao ordenaLivro: recebe dois nós AVL e retorna um número inteiro indicando a ordem afabetica.
 Entrada: ponteiro para dois nós do tipo livro.
 Saìda: 
     -  < 0, se livro a vier primeiro na ordem alfabética
     -  > 0, se livro b vier primeiro na ordem alfabética
     -    0, se forem iguais
 */
-int ordenaLivro(livro *a, livro *b);
-
+int ordenaLivro(void *pontA, void *pontB);
 
 /*
-Função criaLivro: rebebe os dados do dadastramento e retorna um ponteiro para no alocado dinamicamente.
+Função acaoConsulta: percorre a árvore em ordem e imprime os dados de todos
+os exemplares cujo título e autor coincidam com os informados pelo usuário.
+Entrada: ponteiro para o nó atual da árvore (livro cadastrado) e ponteiro
+para o livro de busca contendo título e autor digitados pelo usuário.
+Saída: void.
+*/
+void acaoConsulta(void *pontA, void *pontB);
+
+/*
+Função criaLivro: recebe os dados do cadastramento e retorna um ponteiro para no alocado dinamicamente.
 Entrada: titulo, autor, editora, edição e ano de publicação.
 Saìda: ponteiro para o nó alocado.
 */
-livro *criaLivro(char titulo[], char autor[], char editora[], int ed, int lancamento);
+livro *criaLivro(char titulo[], char autor[], int ed);
 
 /*
-Função consultaLivro: rebebe o titulo e autor do livro e retorna um ponteiro para o nó do livro caso ele exista. caso a edição nao seja relevante para a consulta, o usuário deve passar 0 como parâmetro.
-Entrada: titulo e autor do livro.
-Saída: ponteiro para o nó do livro caso ele exista, ou NULL caso contrário.
-*/
-livro *consultaLivro(char titulo[], char autor[], int ed, livro *no);
-
-
-/*
-Função removeLivro: rebebe um ponteiro para o nó do livro e libera a memória alocada. fução callback para a função de remoção da árvore AVL.
+Função removeLivro: recebe um ponteiro para o nó do livro e libera a memória alocada. fução callback para a função de remoção da árvore AVL.
 Entrada: ponteiro para o nó do livro.
 saída: void.
 */
-void removeLivro( livro *no);
+void removeLivro( void *no);
 
 
 #endif
